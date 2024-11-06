@@ -1,0 +1,16 @@
+{
+    "name": "RELAY DRIVER",
+    "description": "Mục mở rộng của Yolo:Uno dùng cho module Multi Channel Relay",
+    "libs": [
+        "multi_channel_relay.py"
+    ],
+    "blocks": [
+        "definition.js"
+    ],
+    "toolbox": "toolbox.xml",
+    "languages": {
+        "en": "languages/en.js",
+        "vi": "languages/vi.js"
+    },
+    "poster": "poster.png"
+}
