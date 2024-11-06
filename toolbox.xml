@@ -1,6 +1,6 @@
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
   <category name="RELAY DRIVER" colour="#cb2026" icon="arrows-alt">
-    <block type="multi_channel_relay">
+    <block type="relay_control_1">
       <value name="relay">
         <shadow type="math_number">
           <field name="NUM">0</field>
@@ -12,7 +12,7 @@
         </shadow>
       </value>
     </block>
-    <block type="multi_channel_relay">
+    <block type="relay_control_2">
       <value name="relay">
         <shadow type="math_number">
           <field name="NUM">1</field>
@@ -24,7 +24,7 @@
         </shadow>
       </value>
     </block>
-    <block type="multi_channel_relay">
+    <block type="relay_control_3">
       <value name="relay">
         <shadow type="math_number">
           <field name="NUM">2</field>
@@ -36,7 +36,19 @@
         </shadow>
       </value>
     </block>
-    <block type="multi_channel_relay">
+    <block type="relay_control_4">
+      <value name="relay">
+        <shadow type="math_number">
+          <field name="NUM">3</field>
+        </shadow>
+      </value>
+      <value name="state">
+        <shadow type="math_number">
+          <field name="NUM">0</field> <!-- TẮT -->
+        </shadow>
+      </value>
+    </block>
+    <block type="relay_control_4_channels">
       <value name="relay">
         <shadow type="math_number">
           <field name="NUM">3</field>
