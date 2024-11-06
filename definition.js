@@ -16,7 +16,7 @@ Blockly.Blocks['relay_control_1'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#cb2026",
+      "colour": "#18820c",
       "tooltip": "Điều khiển Relay 1",
       "helpUrl": ""
     });
@@ -47,7 +47,7 @@ Blockly.Blocks['relay_control_2'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#cb2026",
+      "colour": "#18820c",
       "tooltip": "Điều khiển Relay 2",
       "helpUrl": ""
     });
@@ -78,7 +78,7 @@ Blockly.Blocks['relay_control_3'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#cb2026",
+      "colour": "#18820c",
       "tooltip": "Điều khiển Relay 3",
       "helpUrl": ""
     });
@@ -109,7 +109,7 @@ Blockly.Blocks['relay_control_4'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#cb2026",
+      "colour": "#18820c",
       "tooltip": "Điều khiển Relay 4",
       "helpUrl": ""
     });
@@ -164,7 +164,7 @@ Blockly.Blocks['relay_control_4_channels'] = {
       ],
       "previousStatement": null,
       "nextStatement": null,
-      "colour": "#cb2026",
+      "colour": "#18820c",
       "tooltip": "Điều khiển 4 kênh relay",
       "helpUrl": ""
     });
