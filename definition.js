@@ -59,7 +59,7 @@ Blockly.Blocks['color_sensor_detect_color'] = {
 
 Blockly.Python['color_sensor_detect_color'] = function(block) {
   var detectColor = block.getFieldValue('DETECT_COLOR');
-  var code = '(color_sensor.classify_hue() == "' + detectColor + '")';
+  var code = '(color_sensor.classify_hue(hues={"red":0,"yellow":60,"green":120,"cyan":180,"blue":240,"magenta":300}) == "' + detectColor + '")';
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
