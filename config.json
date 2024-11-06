@@ -1,13 +1,16 @@
 {
-    "name": "Cảm biến màu sắc",
-    "description": "Thư viện cho module cảm biến màu sắc ",
+    "name": "Relay 4 kênh",
+    "description": "Thư viện module Relay 4 kênh I2C",
     "libs": [
-        "color_sensor.py"
+        "4chs_relay.py"
     ],
     "blocks": [
         "definition.js"
     ],
     "toolbox": "toolbox.xml",
-    "languages": {},
+    "languages": {
+        "en": "languages/en.js",
+        "vi": "languages/vi.js"
+    },
     "poster": "poster.png"
 }

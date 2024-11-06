@@ -1,105 +1,83 @@
-// Khối đọc giá trị màu sắc RGB
-Blockly.Blocks['color_sensor_read_color'] = {
-  init: function() {
+Blockly.Blocks['relay_toggle_control'] = {
+  init: function () {
     this.jsonInit({
-      "type": "color_sensor_read_color",
-      "message0": "cảm biến màu sắc đọc giá trị %1",
+      "type": "relay_toggle_control",
+      "message0": "relay %1 %2",
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "COLOR",
+          "name": "relay",
           "options": [
-            ["Đỏ", "red"],
-            ["Xanh lá", "green"],
-            ["Xanh dương", "blue"]
+            ["1", "1"],
+            ["2", "2"],
+            ["3", "3"],
+            ["4", "4"]
+          ]
+        },
+        {
+          "type": "field_dropdown",
+          "name": "state",
+          "options": [
+            ["bật", "1"],
+            ["tắt", "0"],
+            ["đảo trạng thái", "toggle"]
           ]
         }
       ],
-      "output": "Number",
-      "colour": "#ff5733",
-      "tooltip": "Đọc giá trị màu sắc RGB từ cảm biến",
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": "#18820c",
+      "tooltip": "Điều khiển Relay với các tùy chọn Bật/Tắt/Đảo trạng thái",
       "helpUrl": ""
     });
   }
 };
 
-Blockly.Python['color_sensor_read_color'] = function(block) {
-  var color = block.getFieldValue('COLOR');
-  var code = 'color_sensor.get_' + color + '()';
-  return [code, Blockly.Python.ORDER_ATOMIC];
+Blockly.Python['relay_toggle_control'] = function (block) {
+  Blockly.Python.definitions_['import_relay_driver'] = 'from 4chs_relay import *';
+  var relay = block.getFieldValue('relay');
+  var state = block.getFieldValue('state');
+  var code = "";
+  if (state === "toggle") {
+    code = 'toggle_channel(' + relay + ')\n';  
+  } else {
+    if (state === "1") {
+      code = 'turn_on_channel(' + relay + ')\n';  
+    } else {
+      code = 'turn_off_channel(' + relay + ')\n';  
+    }
+  }
+  return code;
 };
 
-// Khối phát hiện màu sắc
-Blockly.Blocks['color_sensor_detect_color'] = {
+Blockly.Blocks['relay_get_state'] = {
   init: function() {
     this.jsonInit({
-      "type": "color_sensor_detect_color",
-      "message0": "cảm biến màu sắc phát hiện màu %1",
+      "type": "relay_get_state",
+      "message0": "trạng thái Relay %1",
       "args0": [
         {
           "type": "field_dropdown",
-          "name": "DETECT_COLOR",
+          "name": "relay",
           "options": [
-            ["Trắng", "white"],
-            ["Đen", "black"],
-            ["Đỏ", "red"],
-            ["Xanh lá", "green"],
-            ["Xanh dương", "blue"],
-            ["Vàng", "yellow"]
+            ["1", "1"],
+            ["2", "2"],
+            ["3", "3"],
+            ["4", "4"]
           ]
         }
       ],
-      "output": "Boolean",
-      "colour": "#33cc33",
-      "tooltip": "Phát hiện màu sắc cụ thể",
+      "output": "Number",  // Định nghĩa kiểu dữ liệu đầu ra là Number
+      "colour": "#18820c",
+      "tooltip": "Lấy trạng thái bật/tắt của Relay",
       "helpUrl": ""
     });
   }
 };
 
-Blockly.Python['color_sensor_detect_color'] = function(block) {
-  var detectColor = block.getFieldValue('DETECT_COLOR');
-  var code = '(color_sensor.classify_hue(hues={"red":0,"yellow":60,"green":120,"cyan":180,"blue":240,"magenta":300}) == "' + detectColor + '")';
-  return [code, Blockly.Python.ORDER_ATOMIC];
+Blockly.Python['relay_get_state'] = function(block) {
+  Blockly.Python.definitions_['import_relay_driver'] = 'from 4chs_relay import *';
+  var relay = block.getFieldValue('relay');  
+  var code = 'get_channel_state(' + relay + ')';  
+  return [code, Blockly.Python.ORDER_ATOMIC];  
 };
-
-// Khối đọc giá trị độ sáng (Lux)
-Blockly.Blocks['color_sensor_read_lux'] = {
-  init: function() {
-    this.jsonInit({
-      "type": "color_sensor_read_lux",
-      "message0": "cảm biến màu sắc đọc giá trị độ sáng",
-      "output": "Number",
-      "colour": "#ffff66",
-      "tooltip": "Đọc giá trị độ sáng (Lux)",
-      "helpUrl": ""
-    });
-  }
-};
-
-Blockly.Python['color_sensor_read_lux'] = function(block) {
-  var code = 'color_sensor.get_lux()';
-  return [code, Blockly.Python.ORDER_ATOMIC];
-};
-
-// Khối đọc giá trị nhiệt độ màu (CCT)
-Blockly.Blocks['color_sensor_read_cct'] = {
-  init: function() {
-    this.jsonInit({
-      "type": "color_sensor_read_cct",
-      "message0": "cảm biến màu sắc đọc giá trị nhiệt độ màu",
-      "output": "Number",
-      "colour": "#ffcc66",
-      "tooltip": "Đọc giá trị nhiệt độ màu (CCT)",
-      "helpUrl": ""
-    });
-  }
-};
-
-Blockly.Python['color_sensor_read_cct'] = function(block) {
-  var code = 'color_sensor.get_cct(1)'; // offset có thể được điều chỉnh
-  return [code, Blockly.Python.ORDER_ATOMIC];
-};
-
-// Thêm import thư viện ColorSensorVEML6040
-Blockly.Python.definitions_['import_color_sensor'] = 'from color_sensor import ColorSensorVEML6040';
