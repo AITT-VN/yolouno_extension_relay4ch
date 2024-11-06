@@ -1,16 +1,13 @@
 {
-    "name": "Relay 4 kênh",
-    "description": "Thư viện module Relay 4 kênh I2C",
+    "name": "Cảm biến màu sắc",
+    "description": "Thư viện cho module cảm biến màu sắc TCS34725",
     "libs": [
-        "4chs_relay.py"
+        "tcs34725.py"
     ],
     "blocks": [
         "definition.js"
     ],
     "toolbox": "toolbox.xml",
-    "languages": {
-        "en": "languages/en.js",
-        "vi": "languages/vi.js"
-    },
+    "languages": {},
     "poster": "poster.png"
 }
