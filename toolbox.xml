@@ -12,5 +12,8 @@
         </shadow>
       </value>
     </block>
+    <block type="relay_get_state">
+    <field name="relay">1</field>
+    </block>
   </category>
 </xml>
