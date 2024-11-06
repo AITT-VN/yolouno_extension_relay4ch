@@ -20,12 +20,6 @@ def get_channel_state(channel):
     else:
         return 0  
 
-
-def channel_control(state):
-    global channel_state
-    channel_state = state
-    i2c.writeto_mem(i2c_addr, CMD_CHANNEL_CTRL, bytes([channel_state]))
-
 def turn_off_channel(channel):
     global channel_state
     channel_state &= ~(1 << (channel - 1))  
