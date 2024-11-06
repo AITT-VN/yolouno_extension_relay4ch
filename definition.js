@@ -33,9 +33,9 @@ Blockly.Blocks['relay_toggle_control'] = {
   }
 };
 
-BBlockly.Python['relay_toggle_control'] = function (block) {
-  // Đảm bảo các thư viện cần thiết được import vào
-  Blockly.Python.definitions_['import_relay_driver'] = 'from relay_driver import *';
+Blockly.Python['relay_toggle_control'] = function (block) {
+  // Đảm bảo thư viện cần thiết được import vào
+  Blockly.Python.definitions_['import_relay_driver'] = 'from 4chs_relay import *';
   
   var relay = block.getFieldValue('relay');
   var state = block.getFieldValue('state');
@@ -44,12 +44,12 @@ BBlockly.Python['relay_toggle_control'] = function (block) {
   
   // Kiểm tra trạng thái là "Đảo trạng thái"
   if (state === "toggle") {
-    code = 'relay_driver.toggleRelay(' + relay + ')\n';  // Gọi hàm toggleRelay để đảo trạng thái
+    code = 'channel_control(channel_state ^ (1 << (' + relay + ' - 1)))\n';  // Đảo trạng thái kênh
   } else {
     if (state === "1") {
-      code = 'relay_driver.setRelay(' + relay + ', 1)\n';  // Gọi hàm setRelay để bật kênh
+      code = 'turn_on_channel(' + relay + ')\n';  // Gọi hàm turn_on_channel để bật kênh
     } else {
-      code = 'relay_driver.setRelay(' + relay + ', 0)\n';  // Gọi hàm setRelay để tắt kênh
+      code = 'turn_off_channel(' + relay + ')\n';  // Gọi hàm turn_off_channel để tắt kênh
     }
   }
   
