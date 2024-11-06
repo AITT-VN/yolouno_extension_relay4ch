@@ -1,4 +1,3 @@
-// Khối điều khiển Relay với các tùy chọn Bật/Tắt/Đảo trạng thái
 Blockly.Blocks['relay_toggle_control'] = {
   init: function () {
     this.jsonInit({
@@ -9,10 +8,10 @@ Blockly.Blocks['relay_toggle_control'] = {
           "type": "field_dropdown",
           "name": "relay",
           "options": [
-            ["1", "0"],
-            ["2", "1"],
-            ["3", "2"],
-            ["4", "3"]
+            ["1", "1"],
+            ["2", "2"],
+            ["3", "3"],
+            ["4", "4"]
           ]
         },
         {
@@ -34,15 +33,24 @@ Blockly.Blocks['relay_toggle_control'] = {
   }
 };
 
-Blockly.Python['relay_toggle_control'] = function (block) {
+BBlockly.Python['relay_toggle_control'] = function (block) {
+  // Đảm bảo các thư viện cần thiết được import vào
+  Blockly.Python.definitions_['import_relay_driver'] = 'from relay_driver import *';
+  
   var relay = block.getFieldValue('relay');
   var state = block.getFieldValue('state');
   
+  var code = "";
+  
   // Kiểm tra trạng thái là "Đảo trạng thái"
   if (state === "toggle") {
-    var code = 'relay_driver.toggleRelay(' + relay + ')\n';  // Giả sử có phương thức toggleRelay
+    code = 'relay_driver.toggleRelay(' + relay + ')\n';  // Gọi hàm toggleRelay để đảo trạng thái
   } else {
-    var code = 'relay_driver.setRelay(' + relay + ', ' + state + ')\n';  // Bật/Tắt theo trạng thái
+    if (state === "1") {
+      code = 'relay_driver.setRelay(' + relay + ', 1)\n';  // Gọi hàm setRelay để bật kênh
+    } else {
+      code = 'relay_driver.setRelay(' + relay + ', 0)\n';  // Gọi hàm setRelay để tắt kênh
+    }
   }
   
   return code;
