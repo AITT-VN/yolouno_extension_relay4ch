@@ -15,11 +15,10 @@ channel_state = 0
 
 def get_channel_state(channel):
     global channel_state
-    # Kiểm tra xem kênh đã bật hay chưa dựa vào bit của channel
-    if channel_state & (1 << (channel - 1)):  # Kiểm tra bit tương ứng với channel
-        return 1  # Kênh bật
+    if channel_state & (1 << (channel - 1)):  
+        return 1  
     else:
-        return 0  # Kênh tắt
+        return 0  
 
 
 def channel_control(state):

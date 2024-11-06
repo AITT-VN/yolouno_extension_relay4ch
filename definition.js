@@ -38,17 +38,15 @@ Blockly.Python['relay_toggle_control'] = function (block) {
   var relay = block.getFieldValue('relay');
   var state = block.getFieldValue('state');
   var code = "";
-
   if (state === "toggle") {
-    code = 'channel_control(get_channel_state() ^ (1 << (' + relay + ' - 1)))\n';  // Đảo trạng thái kênh
+    code = 'toggle_channel(' + relay + ')\n';  
   } else {
     if (state === "1") {
-      code = 'turn_on_channel(' + relay + ')\n';  // Gọi hàm turn_on_channel để bật kênh
+      code = 'turn_on_channel(' + relay + ')\n';  
     } else {
-      code = 'turn_off_channel(' + relay + ')\n';  // Gọi hàm turn_off_channel để tắt kênh
+      code = 'turn_off_channel(' + relay + ')\n';  
     }
   }
-
   return code;
 };
 
