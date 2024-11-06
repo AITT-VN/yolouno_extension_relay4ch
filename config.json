@@ -1,8 +1,8 @@
 {
     "name": "Cảm biến màu sắc",
-    "description": "Thư viện cho module cảm biến màu sắc TCS34725",
+    "description": "Thư viện cho module cảm biến màu sắc ",
     "libs": [
-        "tcs34725.py"
+        "color_sensor.py"
     ],
     "blocks": [
         "definition.js"
