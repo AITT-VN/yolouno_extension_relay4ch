@@ -232,7 +232,7 @@ Blockly.Python['read_relay_status_at_address'] = function (block) {
 
   var relay_code = (relay == "tất cả") ? '0' : relay;  // Chọn relay cụ thể hoặc tất cả
   
-  code = `  return relay_${address}.get_relay(${relay_code})\n`;  // Đọc trạng thái relay
+  var code = `  return relay_${address}.get_relay(${relay_code})\n`;  // Đọc trạng thái relay
   
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
