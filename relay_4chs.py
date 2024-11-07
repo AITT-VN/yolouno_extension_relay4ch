@@ -1,5 +1,6 @@
 from machine import SoftI2C, Pin
 import time
+from yolo_uno import *
 
 CMD_CHANNEL_CTRL = 0x10
 CMD_SAVE_I2C_ADDR = 0x11
