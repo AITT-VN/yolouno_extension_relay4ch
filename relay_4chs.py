@@ -1,13 +1,11 @@
 from machine import SoftI2C, Pin
 import time
 
+CMD_CHANNEL_CTRL = 0x10
+I2C_ADDR = 0x11
 class RelayController:
-    # Định nghĩa các hằng số
-    CMD_CHANNEL_CTRL = 0x10
-    I2C_ADDR = 0x11
-
     def __init__(self, freq=100000):
-        self.i2c = SoftI2C(scl=Pin(12), sda=Pin(11), freq=freq)
+        self.i2c = SoftI2C(scl=SCL_PIN, sda=SDA_PIN, freq=freq)
         self.channel_state = 0x00
 
     def get_relay(self, index):
