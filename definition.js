@@ -113,7 +113,7 @@ Blockly.Blocks['create_relay'] = {
       "message0": "tạo relay có địa chỉ %1",
       "args0": [
         {
-          "type": "field_textinput",  // Thay vì field_dropdown, sử dụng field_textinput
+          "type": "field_textinput",  
           "name": "addr",
           "text": "0xab"  // Giá trị mặc định cho địa chỉ relay
         }
@@ -128,12 +128,11 @@ Blockly.Blocks['create_relay'] = {
   }
 };
 
-  
 Blockly.Python['create_relay'] = function (block) {
   Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';  // Đảm bảo import đúng thư viện
   
-  var addr = block.getFieldValue('addr');  // Lấy địa chỉ relay từ khối
-  var code = 'create_relay(' + addr + ')\n';  // Tạo mã Python gọi hàm `create_relay`
+  var addr = block.getFieldValue('addr');  // Lấy địa chỉ relay từ khối (người dùng nhập vào)
+  var code = 'create_relay("' + addr + '")\n';  // Tạo mã Python gọi hàm `create_relay`
   
   return code;
 };
