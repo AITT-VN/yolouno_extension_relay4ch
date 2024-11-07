@@ -133,3 +133,37 @@ Blockly.Python['create_relay'] = function (block) {
   var code = `relay.create_relay(${address})\n`;  // Gọi hàm tạo relay với địa chỉ
   return code;
 };
+
+Blockly.Blocks['change_relay_address'] = {
+  init: function () {
+    this.jsonInit({
+      "type": "change_relay_address",
+      "message0": "đổi địa chỉ relay %1 thành %2",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "old_address",
+          "check": "Number"
+        },
+        {
+          "type": "input_value",
+          "name": "new_address",
+          "check": "Number"
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": "#18820c",
+      "tooltip": "Đổi địa chỉ của một relay từ địa chỉ cũ sang địa chỉ mới",
+      "helpUrl": ""
+    });
+  }
+};
+
+Blockly.Python['change_relay_address'] = function (block) {
+  Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';
+  var old_address = Blockly.Python.valueToCode(block, 'old_address', Blockly.Python.ORDER_ATOMIC);
+  var new_address = Blockly.Python.valueToCode(block, 'new_address', Blockly.Python.ORDER_ATOMIC);
+  var code = `relay.change_relay_address(${old_address}, ${new_address})\n`;  // Gọi hàm đổi địa chỉ relay
+  return code;
+};
