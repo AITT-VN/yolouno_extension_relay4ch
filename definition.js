@@ -227,6 +227,6 @@ Blockly.Python['read_relay_status_at_address'] = function (block) {
   Blockly.Python.definitions_['create_relay_driver'] = 'relay_' + address + ' = RelayController(' + address + ')';
   var code = "";
   var relay_code = (relay == "tất cả") ? '0' : relay;  
-  var code = `relay_${address}.get_relay(${relay_code})\n`;
+  var code = `relay_${address}.get_relay(${relay_code})`;
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
