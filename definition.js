@@ -229,7 +229,6 @@ Blockly.Python['read_relay_status_at_address'] = function (block) {
   var relay = block.getFieldValue('relay');
   var address = Blockly.Python.valueToCode(block, 'address', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.definitions_['relay_init_' + address] = `if 'relay_${address}' not in globals():\n  relay_${address} = RelayController(${address})`;
-
   var relay_code = (relay == "tất cả") ? '0' : relay;  // Chọn relay cụ thể hoặc tất cả
   var code = `relay_${address}.get_relay(${relay_code})\n`;  // Đọc trạng thái relay
   
