@@ -16,11 +16,23 @@
       <field name="relay">1</field>
     </block>
     <block type="create_relay">
-      <field name="ADDRESS">0xab</field>
+    <value name="address">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+    </value>
     </block>
     <block type="change_relay_address">
-      <field name="OLD_ADDRESS">0xcd</field>
-      <field name="NEW_ADDRESS">0xef</field>
+      <value name="old_address">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="new_address">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
     </block>
   </category>
 </xml>
