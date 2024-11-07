@@ -177,15 +177,14 @@ Blockly.Python['control_relay_at_address'] = function (block) {
   Blockly.Python.definitions_['create_relay_driver'] = 'relay_' + address + ' = RelayController(' + address + ')';
   var code = "";
 
-  var relay_code = (relay == "tất cả") ? '0' : relay;  // Chọn relay cụ thể hoặc tất cả
+  var relay_code = (relay == "tất cả") ? '0' : relay;  
 
   if (state === "toggle") {
-    code = `relay_${address}.toggle_relay(${relay_code})\n`;  // Toggle
+    code = `relay_${address}.toggle_relay(${relay_code})\n`; 
   } else {
-    var state_value = (state === "1") ? '1' : '0';  // Chuyển đổi trạng thái bật/tắt
-    code = `relay_${address}.set_relay(${relay_code}, ${state_value})\n`;  // Bật/Tắt
+    var state_value = (state === "1") ? '1' : '0';  
+    code = `relay_${address}.set_relay(${relay_code}, ${state_value})\n`;  
   }
-
   return code;
 };
 
