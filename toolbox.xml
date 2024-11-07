@@ -7,7 +7,7 @@
         </shadow>
       </value>
       <value name="state">
-        <shadow type="math_number">
+        <shadow type="field_dropdown">
           <field name="NUM">0</field> <!-- TẮT -->
         </shadow>
       </value>
