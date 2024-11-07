@@ -212,7 +212,7 @@ Blockly.Blocks['read_relay_status_at_address'] = {
           "check": "Number"
         }
       ],
-      "output": "Boolean",
+      "output": "Number",
       "colour": "#18820c",
       "tooltip": "Đọc trạng thái của relay tại địa chỉ được nhập",
       "helpUrl": ""
