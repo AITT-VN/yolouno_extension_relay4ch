@@ -128,65 +128,22 @@ Blockly.Python['change_relay_address'] = function (block) {
   return code;
 };
 
-Blockly.Blocks['control_relay_at_address'] = {
-  init: function () {
-    this.jsonInit({
-      "type": "control_relay_at_address",
-      "message0": "%1 relay %2 tại địa chỉ %3",
-      "args0": [
-        {
-          "type": "field_dropdown",
-          "name": "state",
-          "options": [
-            ["bật", "1"],
-            ["tắt", "0"],
-            ["đảo trạng thái", "toggle"]
-          ]
-        },
-        {
-          "type": "field_dropdown",
-          "name": "relay",
-          "options": [
-            ["tất cả", "tất cả"],
-            ["1", "1"],
-            ["2", "2"],
-            ["3", "3"],
-            ["4", "4"]
-          ]
-        },
-        {
-          "type": "input_value",
-          "name": "address",
-          "check": "Number"
-        }
-      ],
-      "previousStatement": null,
-      "nextStatement": null,
-      "colour": "#18820c",
-      "tooltip": "Bật/tắt/đảo trạng thái relay tại địa chỉ được nhập",
-      "helpUrl": ""
-    });
-  }
-};
-
 Blockly.Python['control_relay_at_address'] = function (block) {
   Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';
   var state = block.getFieldValue('state');
   var relay = block.getFieldValue('relay');
   var address = Blockly.Python.valueToCode(block, 'address', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.definitions_['create_relay_driver'] = 'relay_' + address + ' = RelayController(' + address + ')';
-  var code = "";
-
-  var relay_code = (relay == "tất cả") ? '0' : relay;  
+  var relay_code = (relay === "tất cả") ? '0' : relay;  // Sử dụng 0 cho tất cả hoặc relay cụ thể
 
   if (state === "toggle") {
-    code = `relay_${address}.toggle_relay(${relay_code})\n`; 
+    return `relay_${address}.toggle_relay(${relay_code})\n`;
   } else {
     var state_value = (state === "1") ? '1' : '0';  
-    code = `relay_${address}.set_relay(${relay_code}, ${state_value})\n`;  
+    return `relay_${address}.set_relay(${relay_code}, ${state_value})\n`;
   }
-  return code;
 };
+
 
 Blockly.Blocks['read_relay_status_at_address'] = {
   init: function () {
