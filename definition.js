@@ -54,7 +54,7 @@ Blockly.Blocks['relay_get_state'] = {
   init: function() {
     this.jsonInit({
       "type": "relay_get_state",
-      "message0": "trạng thái Relay %1",
+      "message0": "trạng thái relay %1",
       "args0": [
         {
           "type": "field_dropdown",
