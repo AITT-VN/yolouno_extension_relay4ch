@@ -6,6 +6,9 @@ CMD_SAVE_I2C_ADDR = 0x11
 I2C_ADDR = 0x11
 
 class RelayController:
+    CMD_CHANNEL_CTRL = 0x10  # Hằng số điều khiển kênh relay
+    CMD_SAVE_I2C_ADDR = 0x11  # Hằng số để lưu địa chỉ I2C
+    I2C_ADDR = 0x11  # Địa chỉ I2C mặc định
     def __init__(self, addr=I2C_ADDR):
         self.i2c = SoftI2C(scl=12, sda=11, freq=100000)
         self.addr = addr
