@@ -17,31 +17,31 @@
     </block>
     <block type="change_relay_address">
       <value name="old_address">
-        <block type="math_number">
+        <shadow type="math_number">
           <field name="NUM">0</field>
-        </block>
+        </shadow>
       </value>
       <value name="new_address">
-        <block type="math_number">
+        <shadow type="math_number">
           <field name="NUM">1</field>
-        </block>
+        </shadow>
       </value>
     </block>
     <block type="control_relay_at_address">
     <field name="state">1</field>
     <field name="relay">1</field>
     <value name="address">
-      <block type="math_number">
+      <shadow type="math_number">
         <field name="NUM">0</field>
-      </block>
+      </shadow>
     </value>
     </block>
     <block type="read_relay_status_at_address">
       <field name="relay">1</field>  <!-- Chọn relay 1 -->
       <value name="address">
-          <block type="math_number">
+          <shadow type="math_number">
               <field name="NUM">0</field>  <!-- Địa chỉ relay -->
-          </block>
+          </shadow>
       </value>
     </block>
   </category>
