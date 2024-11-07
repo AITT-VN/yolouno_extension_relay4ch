@@ -6,8 +6,8 @@ class RelayController:
     CMD_CHANNEL_CTRL = 0x10
     I2C_ADDR = 0x11
 
-    def __init__(self, scl_pin, sda_pin, freq=100000):
-        self.i2c = SoftI2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=freq)
+    def __init__(self, freq=100000):
+        self.i2c = SoftI2C(scl=Pin(12), sda=Pin(11), freq=freq)
         self.channel_state = 0x00
 
     def get_relay(self, index):
@@ -33,4 +33,4 @@ class RelayController:
             self.channel_state ^= (1 << (index - 1))  # Đảo trạng thái kênh cụ thể
         self.i2c.writeto_mem(self.I2C_ADDR, self.CMD_CHANNEL_CTRL, bytes([self.channel_state]))
 
-relay = RelayController(scl_pin=12, sda_pin=11)
+relay = RelayController()

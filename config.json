@@ -2,7 +2,7 @@
     "name": "Relay 4 kênh",
     "description": "Thư viện module Relay 4 kênh I2C",
     "libs": [
-        "relay.py"
+        "relay_4chs.py"
     ],
     "blocks": [
         "definition.js"
