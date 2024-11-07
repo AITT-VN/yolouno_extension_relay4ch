@@ -14,7 +14,6 @@ class RelayController:
     def change_relay_address(self, new_addr):
         self.i2c.writeto_mem(self.addr, CMD_SAVE_I2C_ADDR, bytes([new_addr]))
 
-
     def get_relay(self, index):
         if index == 0:
             return self.channel_state  
