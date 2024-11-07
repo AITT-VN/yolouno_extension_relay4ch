@@ -38,4 +38,4 @@ class RelayController:
             self.channel_state ^= (1 << (index - 1))  
         self.i2c.writeto_mem(self.addr, CMD_CHANNEL_CTRL, bytes([self.channel_state]))
 
-relay = RelayController()
+relay_17 = RelayController()
