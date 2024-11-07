@@ -108,12 +108,8 @@ Blockly.Blocks['change_relay_address'] = {
           "name": "new_address",
           "check": "Number"
         },
-        {
-          "type": "input_dummy",
-        },
-        {
-          "type": "input_dummy",
-        }
+        {type: "input_dummy"},
+        {type: "input_dummy"},
       ],
       "previousStatement": null,
       "nextStatement": null,
