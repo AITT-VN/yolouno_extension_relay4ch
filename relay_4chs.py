@@ -3,7 +3,6 @@ import time
 
 CMD_CHANNEL_CTRL = 0x10
 CMD_SAVE_I2C_ADDR = 0x11
-
 I2C_ADDR = 0x11
 
 class RelayController:
@@ -13,7 +12,7 @@ class RelayController:
         self.channel_state = 0x00
     
     def change_relay_address(self, new_addr):
-        self.i2c.writeto_mem(self.addr, self.CMD_SAVE_I2C_ADDR, bytes([new_addr]))
+        self.i2c.writeto_mem(self.addr, CMD_SAVE_I2C_ADDR, bytes([new_addr]))
 
 
     def get_relay(self, index):
@@ -30,13 +29,13 @@ class RelayController:
                 self.channel_state |= (1 << (index - 1)) 
             else:
                 self.channel_state &= ~(1 << (index - 1))  
-        self.i2c.writeto_mem(self.addr, self.CMD_CHANNEL_CTRL, bytes([self.channel_state]))
+        self.i2c.writeto_mem(self.addr, CMD_CHANNEL_CTRL, bytes([self.channel_state]))
 
     def toggle_relay(self, index):
         if index == 0:
             self.channel_state ^= 0x0F  
         else:
             self.channel_state ^= (1 << (index - 1))  
-        self.i2c.writeto_mem(self.addr, self.CMD_CHANNEL_CTRL, bytes([self.channel_state]))
+        self.i2c.writeto_mem(self.addr, CMD_CHANNEL_CTRL, bytes([self.channel_state]))
 
 relay = RelayController()
