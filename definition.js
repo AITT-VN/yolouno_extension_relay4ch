@@ -123,9 +123,9 @@ Blockly.Python['change_relay_address'] = function (block) {
   Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';
   var old_address = Blockly.Python.valueToCode(block, 'old_address', Blockly.Python.ORDER_ATOMIC);
   var new_address = Blockly.Python.valueToCode(block, 'new_address', Blockly.Python.ORDER_ATOMIC);
+  Blockly.Python.definitions_['relay_init_' + address] = `if 'relay_${old_address}' not in globals():\n  relay_${old_address} = RelayController(${address})`;
   
-  var code = `if 'relay_${old_address}' not in globals():\n`;
-  code += `  relay_${old_address} = RelayController(${old_address})\n`;
+  var code = "";
   code += `relay_${old_address}.change_relay_address(${new_address})\n`;
   code += `relay_${new_address} = RelayController(${new_address})\n`;
   code += `time.sleep_ms(100)\n`;
@@ -178,9 +178,9 @@ Blockly.Python['control_relay_at_address'] = function (block) {
   var state = block.getFieldValue('state');
   var relay = block.getFieldValue('relay');
   var address = Blockly.Python.valueToCode(block, 'address', Blockly.Python.ORDER_ATOMIC);
+  Blockly.Python.definitions_['relay_init_' + address] = `if 'relay_${address}' not in globals():\n  relay_${address} = RelayController(${address})`;
 
-  var code = `if 'relay_${address}' not in globals():\n`;
-  code += `  relay_${address} = RelayController(${address})\n`;
+  var code = "";
   var relay_code = (relay == "tất cả") ? '0' : relay;  // Chọn relay cụ thể hoặc tất cả
 
   if (state === "toggle") {
