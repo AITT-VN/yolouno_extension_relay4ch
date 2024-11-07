@@ -1,7 +1,7 @@
 Blockly.Blocks['relay_toggle_control'] = {
-  init: function () {
+  init: function() {
     this.jsonInit({
-      "type": "relay_toggle_control",
+      "type": "relay_toggle_control",  // Đảm bảo rằng tên type này khớp
       "message0": "%1 relay %2",
       "args0": [
         {
@@ -33,6 +33,7 @@ Blockly.Blocks['relay_toggle_control'] = {
     });
   }
 };
+
 
 Blockly.Python['relay_toggle_control'] = function (block) {
   Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';
