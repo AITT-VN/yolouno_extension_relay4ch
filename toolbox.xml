@@ -15,13 +15,6 @@
     <block type="relay_get_state">
       <field name="relay">1</field>
     </block>
-    <block type="create_relay">
-    <value name="address">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
-    </block>
     <block type="change_relay_address">
       <value name="old_address">
         <block type="math_number">
