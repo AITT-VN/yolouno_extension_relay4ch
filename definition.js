@@ -44,22 +44,22 @@ Blockly.Python['relay_toggle_control'] = function (block) {
 
   if (state === "toggle") {
     if (relay == "tất cả") {
-      code = 'toggle_relay(0)\n';  // Toggle tất cả
+      code = 'relay.toggle_relay(0)\n';  // Toggle tất cả
     } else {
-      code = 'toggle_relay(' + relay + ')\n';  // Toggle một kênh cụ thể
+      code = 'relay.toggle_relay(' + relay + ')\n';  // Toggle một kênh cụ thể
     }
   } else {
     if (state === "1") {
       if (relay == "tất cả") {
-        code = 'set_relay(0, 1)\n';  // Bật tất cả các kênh
+        code = 'relay.set_relay(0, 1)\n';  // Bật tất cả các kênh
       } else {
-        code = 'set_relay(' + relay + ', 1)\n';  // Bật một kênh cụ thể
+        code = 'relay.set_relay(' + relay + ', 1)\n';  // Bật một kênh cụ thể
       }
     } else {
       if (relay == "tất cả") {
-        code = 'set_relay(0, 0)\n';  // Tắt tất cả các kênh
+        code = 'relay.set_relay(0, 0)\n';  // Tắt tất cả các kênh
       } else {
-        code = 'set_relay(' + relay + ', 0)\n';  // Tắt một kênh cụ thể
+        code = 'relay.set_relay(' + relay + ', 0)\n';  // Tắt một kênh cụ thể
       }
     }
   }
@@ -98,9 +98,9 @@ Blockly.Python['relay_get_state'] = function(block) {
   var code;
 
   if (relay === "tất cả") {
-    code = 'get_relay(0)';  // Lấy trạng thái của tất cả các kênh
+    code = 'relay.get_relay(0)';  // Lấy trạng thái của tất cả các kênh
   } else {
-    code = 'get_relay(' + relay + ')';  // Lấy trạng thái của một kênh cụ thể
+    code = 'relay.get_relay(' + relay + ')';  // Lấy trạng thái của một kênh cụ thể
   }
   
   return [code, Blockly.Python.ORDER_ATOMIC];

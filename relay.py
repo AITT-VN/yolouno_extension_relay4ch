@@ -33,4 +33,4 @@ class RelayController:
             self.channel_state ^= (1 << (index - 1))  # Đảo trạng thái kênh cụ thể
         self.i2c.writeto_mem(self.I2C_ADDR, self.CMD_CHANNEL_CTRL, bytes([self.channel_state]))
 
-relay_controller = RelayController(scl_pin=12, sda_pin=11)
+relay = RelayController(scl_pin=12, sda_pin=11)
