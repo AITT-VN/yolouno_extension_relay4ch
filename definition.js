@@ -232,5 +232,5 @@ Blockly.Python['read_relay_status_at_address'] = function (block) {
   code += `  relay_${address} = RelayController(${address})\n`;
   var relay_code = (relay == "tất cả") ? '0' : relay;  
   code += `relay_${address}.get_relay(${relay_code})`;
-  return [code, Blockly.Python.ORDER_ATOMIC];
+  return [`relay_${address}.get_relay(${relay_code})`, Blockly.Python.ORDER_ATOMIC];
 }; 
