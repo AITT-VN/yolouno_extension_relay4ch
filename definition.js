@@ -124,7 +124,6 @@ Blockly.Python['change_relay_address'] = function (block) {
   var new_address = Blockly.Python.valueToCode(block, 'new_address', Blockly.Python.ORDER_ATOMIC);
   Blockly.Python.definitions_['create_relay_driver'] = 'relay_' + new_address + ' = RelayController(' + old_address + ')';
   var code = "";
-  var code = `relay_${new_address}.change_relay_address(${old_address}, ${new_address})\n`;  // Gọi hàm đổi địa chỉ relay
   return code;
 };
 
