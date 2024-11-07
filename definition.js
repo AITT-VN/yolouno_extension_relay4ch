@@ -34,7 +34,7 @@ Blockly.Blocks['relay_toggle_control'] = {
 };
 
 Blockly.Python['relay_toggle_control'] = function (block) {
-  Blockly.Python.definitions_['import_relay_driver'] = 'from 4chs_relay import *';
+  Blockly.Python.definitions_['import_relay_driver'] = 'from relay import *';
   var relay = block.getFieldValue('relay');
   var state = block.getFieldValue('state');
   var code = "";
@@ -76,7 +76,7 @@ Blockly.Blocks['relay_get_state'] = {
 };
 
 Blockly.Python['relay_get_state'] = function(block) {
-  Blockly.Python.definitions_['import_relay_driver'] = 'from 4chs_relay import *';
+  Blockly.Python.definitions_['import_relay_driver'] = 'relay import *';
   var relay = block.getFieldValue('relay');  
   var code = 'get_channel_state(' + relay + ')';  
   return [code, Blockly.Python.ORDER_ATOMIC];  
