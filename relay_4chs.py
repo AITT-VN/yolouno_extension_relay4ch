@@ -8,7 +8,7 @@ I2C_ADDR = 0x11
 
 class RelayController:
     def __init__(self, addr=I2C_ADDR):
-        self.i2c = SoftI2C(scl=pin19.pin, sda=pin20.pin, freq=100000)
+        self.i2c = SoftI2C(scl=SCL_PIN, sda=SDA_PIN, freq=100000)
         self.addr = addr
         self.channel_state = 0x00
     
