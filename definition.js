@@ -76,7 +76,7 @@ Blockly.Blocks['relay_get_state'] = {
 };
 
 Blockly.Python['relay_get_state'] = function(block) {
-  Blockly.Python.definitions_['import_relay_driver'] = 'relay import *';
+  Blockly.Python.definitions_['import_relay_driver'] = 'from relay import *';
   var relay = block.getFieldValue('relay');  
   var code = 'get_channel_state(' + relay + ')';  
   return [code, Blockly.Python.ORDER_ATOMIC];  
