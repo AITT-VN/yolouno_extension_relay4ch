@@ -107,38 +107,33 @@ Blockly.Python['relay_get_state'] = function(block) {
 };
 
 Blockly.Blocks['create_relay'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Tạo relay với địa chỉ")
-        .appendField(new Blockly.FieldTextInput("0xab"), "ADDRESS");
-    this.setColour(230);
-    this.setTooltip("Tạo relay với địa chỉ chỉ định");
-    this.setHelpUrl("");
+  init: function () {
+    this.jsonInit({
+      "type": "create_relay",
+      "message0": "tạo relay có địa chỉ %1",
+      "args0": [
+        {
+          "type": "field_textinput",  // Thay vì field_dropdown, sử dụng field_textinput
+          "name": "addr",
+          "text": "0xab"  // Giá trị mặc định cho địa chỉ relay
+        }
+      ],
+      "output": "",
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": "#18820c",
+      "tooltip": "Tạo relay với địa chỉ tùy chọn",
+      "helpUrl": ""
+    });
   }
 };
 
-Blockly.Python['create_relay'] = function(block) {
-  var address = block.getFieldValue('ADDRESS');
-  var code = 'create_relay(' + address + ')\n';  // Giả sử hàm `create_relay` đã được định nghĩa
-  return code;
-};
-
-Blockly.Blocks['change_relay_address'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Đổi địa chỉ relay từ")
-        .appendField(new Blockly.FieldTextInput("0xcd"), "OLD_ADDRESS")
-        .appendField("thành")
-        .appendField(new Blockly.FieldTextInput("0xef"), "NEW_ADDRESS");
-    this.setColour(230);
-    this.setTooltip("Đổi địa chỉ của relay từ địa chỉ cũ sang mới");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Python['change_relay_address'] = function(block) {
-  var oldAddress = block.getFieldValue('OLD_ADDRESS');
-  var newAddress = block.getFieldValue('NEW_ADDRESS');
-  var code = 'change_relay_address(' + oldAddress + ', ' + newAddress + ')\n';  // Giả sử hàm `change_relay_address` đã được định nghĩa
+  
+Blockly.Python['create_relay'] = function (block) {
+  Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';  // Đảm bảo import đúng thư viện
+  
+  var addr = block.getFieldValue('addr');  // Lấy địa chỉ relay từ khối
+  var code = 'create_relay(' + addr + ')\n';  // Tạo mã Python gọi hàm `create_relay`
+  
   return code;
 };
