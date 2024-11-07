@@ -123,7 +123,7 @@ Blockly.Python['change_relay_address'] = function (block) {
   Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';
   var old_address = Blockly.Python.valueToCode(block, 'old_address', Blockly.Python.ORDER_ATOMIC);
   var new_address = Blockly.Python.valueToCode(block, 'new_address', Blockly.Python.ORDER_ATOMIC);
-  Blockly.Python.definitions_['relay_init_' + old_address] = `if 'relay_${old_address}' not in globals():\n  relay_${old_address} = RelayController(${address})`;
+  Blockly.Python.definitions_['relay_init_' + old_address] = `if 'relay_${old_address}' not in globals():\n  relay_${old_address} = RelayController(${old_address})`;
   
   var code = "";
   code += `relay_${old_address}.change_relay_address(${new_address})\n`;
