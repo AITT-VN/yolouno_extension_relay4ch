@@ -28,21 +28,21 @@
       </value>
     </block>
     <block type="control_relay_at_address">
-    <field name="state">1</field>
-    <field name="relay">1</field>
-    <value name="address">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
+      <field name="state">1</field>
+      <field name="relay">1</field>
+      <value name="address">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
     </block>
     <block type="read_relay_status_at_address">
-    <field name="relay">1</field>
-    <value name="address">
-      <block type="math_number">
-        <field name="NUM">0</field>
-      </block>
-    </value>
+      <field name="relay">1</field>
+      <value name="address">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
     </block>
   </category>
 </xml>
