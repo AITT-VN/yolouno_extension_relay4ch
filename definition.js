@@ -183,7 +183,7 @@ Blockly.Python['control_relay_at_address'] = function (block) {
     code = `relay.toggle_relay(${address}, ${relay_code})\n`;  // Toggle
   } else {
     var state_value = (state === "1") ? '1' : '0';  // Chuyển đổi trạng thái bật/tắt
-    code = `relay.set_relay_at_address(${address}, ${relay_code}, ${state_value})\n`;  // Bật/Tắt
+    code = `relay.set_relay(${address}, ${relay_code}, ${state_value})\n`;  // Bật/Tắt
   }
 
   return code;
@@ -227,6 +227,6 @@ Blockly.Python['read_relay_status_at_address'] = function (block) {
   Blockly.Python.definitions_['create_relay_driver'] = 'relay_' + address + ' = RelayController(' + address + ')';
   var code = "";
   var relay_code = (relay == "tất cả") ? '0' : relay;  // Chọn relay cụ thể hoặc tất cả
-  var code = `relay.read_relay_status_at_address(${address}, ${relay_code})`;  // Đọc trạng thái relay
+  var code = `relay.get_relay(${address}, ${relay_code})`;  // Đọc trạng thái relay
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
