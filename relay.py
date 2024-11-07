@@ -1,42 +1,36 @@
 from machine import SoftI2C, Pin
 import time
 
-global channel_state
-# Định nghĩa các hằng số
-CMD_CHANNEL_CTRL = 0x10
+class RelayController:
+    # Định nghĩa các hằng số
+    CMD_CHANNEL_CTRL = 0x10
+    I2C_ADDR = 0x11
 
-# Địa chỉ I2C của thiết bị
-i2c_addr = 0x11
+    def __init__(self, scl_pin, sda_pin, freq=100000):
+        self.i2c = SoftI2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=freq)
+        self.channel_state = 0x00
 
-# Khởi tạo đối tượng I2C
-i2c = SoftI2C(scl=12, sda=11, freq=100000)
+    def get_relay(self, index):
+        if index == 0:
+            return self.channel_state  # Lấy trạng thái của tất cả các kênh
+        else:
+            return (self.channel_state >> (index - 1)) & 0x01  # Lấy trạng thái kênh cụ thể
 
-channel_state = 0 
+    def set_relay(self, index, value):
+        if index == 0:
+            self.channel_state = 0x0F if value == 1 else 0x00  # Đặt tất cả các kênh
+        else:
+            if value == 1:
+                self.channel_state |= (1 << (index - 1))  # Bật kênh cụ thể
+            else:
+                self.channel_state &= ~(1 << (index - 1))  # Tắt kênh cụ thể
+        self.i2c.writeto_mem(self.I2C_ADDR, self.CMD_CHANNEL_CTRL, bytes([self.channel_state]))
 
-def get_channel_state(channel):
-    global channel_state
-    if channel_state & (1 << (channel - 1)):  
-        return 1  
-    else:
-        return 0  
+    def toggle_relay(self, index):
+        if index == 0:
+            self.channel_state ^= 0x0F  # Đảo trạng thái của tất cả các kênh
+        else:
+            self.channel_state ^= (1 << (index - 1))  # Đảo trạng thái kênh cụ thể
+        self.i2c.writeto_mem(self.I2C_ADDR, self.CMD_CHANNEL_CTRL, bytes([self.channel_state]))
 
-def turn_off_channel(channel):
-    global channel_state
-    channel_state &= ~(1 << (channel - 1))  
-    i2c.writeto_mem(i2c_addr, CMD_CHANNEL_CTRL, bytes([channel_state]))
-
-def turn_on_channel(channel):
-    global channel_state
-    channel_state |= (1 << (channel - 1))  
-    i2c.writeto_mem(i2c_addr, CMD_CHANNEL_CTRL, bytes([channel_state]))
-
-def toggle_channel(channel):
-    global channel_state
-    current_state = get_channel_state(channel)
-    if current_state == 1:
-        channel_state &= ~(1 << (channel - 1))  # Tắt kênh
-    else:
-        channel_state |= (1 << (channel - 1))  # Bật kênh    
-    i2c.writeto_mem(i2c_addr, CMD_CHANNEL_CTRL, bytes([channel_state]))
-
-
+relay_controller = RelayController(scl_pin=12, sda_pin=11)
