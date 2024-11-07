@@ -9,7 +9,7 @@ CMD_CHANNEL_CTRL = 0x10
 i2c_addr = 0x11
 
 # Khởi tạo đối tượng I2C
-i2c = SoftI2C(scl=SCL_PIN, sda=SDA_PIN, freq=100000)
+i2c = SoftI2C(scl=12, sda=11, freq=100000)
 
 channel_state = 0 
 
@@ -38,4 +38,5 @@ def toggle_channel(channel):
     else:
         channel_state |= (1 << (channel - 1))  # Bật kênh    
     i2c.writeto_mem(i2c_addr, CMD_CHANNEL_CTRL, bytes([channel_state]))
+
 
