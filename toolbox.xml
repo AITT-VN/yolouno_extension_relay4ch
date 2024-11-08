@@ -32,7 +32,7 @@
     <field name="relay">0</field>
     <value name="address">
       <shadow type="math_number">
-        <field name="NUM">0</field>
+        <field name="NUM">17</field>
       </shadow>
     </value>
     </block>
@@ -40,7 +40,7 @@
       <field name="relay">0</field>  <!-- Chọn relay 1 -->
       <value name="address">
           <shadow type="math_number">
-              <field name="NUM">0</field>  <!-- Địa chỉ relay -->
+              <field name="NUM">17</field>  <!-- Địa chỉ relay -->
           </shadow>
       </value>
     </block>

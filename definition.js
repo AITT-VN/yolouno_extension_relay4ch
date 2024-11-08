@@ -151,12 +151,12 @@ Blockly.Blocks['control_relay_at_address'] = {
             ["relay 4", "4"]
           ]
         },
-        { "type": "input_dummy" },
         {
           "type": "input_value",
           "name": "address",
           "check": "Number"
-        }
+        },
+        { "type": "input_dummy" }
       ],
       "previousStatement": null,
       "nextStatement": null,
@@ -207,7 +207,7 @@ Blockly.Blocks['read_relay_status_at_address'] = {
           "name": "address",
           "check": "Number"
         },
-        { "type": "input_dummy" },
+        { "type": "input_dummy" }
       ],
       "output": "Number",
       "colour": "#18820c",
