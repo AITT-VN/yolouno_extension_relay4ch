@@ -129,7 +129,7 @@ Blockly.Blocks['control_relay_at_address'] = {
   init: function () {
     this.jsonInit({
       "type": "control_relay_at_address",
-      "message0": "relay 4 kênh %1%2 địa chỉ %3",
+      "message0": "relay 4 kênh %1%2 địa chỉ %3%4",
       "args0": [
         {
           "type": "field_dropdown",
@@ -151,6 +151,7 @@ Blockly.Blocks['control_relay_at_address'] = {
             ["relay 4", "4"]
           ]
         },
+        { "type": "input_dummy" },
         {
           "type": "input_value",
           "name": "address",
@@ -188,7 +189,7 @@ Blockly.Blocks['read_relay_status_at_address'] = {
   init: function () {
     this.jsonInit({
       "type": "read_relay_status_at_address",
-      "message0": "relay 4 kênh đọc trạng thái %1 địa chỉ %2",
+      "message0": "relay 4 kênh đọc trạng thái %1 địa chỉ %2%3",
       "args0": [
         {
           "type": "field_dropdown",
@@ -205,7 +206,8 @@ Blockly.Blocks['read_relay_status_at_address'] = {
           "type": "input_value",
           "name": "address",
           "check": "Number"
-        }
+        },
+        { "type": "input_dummy" },
       ],
       "output": "Number",
       "colour": "#18820c",
