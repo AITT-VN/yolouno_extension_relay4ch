@@ -42,16 +42,16 @@ Blockly.Python['relay_toggle_control'] = function (block) {
 
   if (state === "toggle") {
     if (relay === "tất cả") {
-      code = 'relay.toggle_relay(0)\n';  // Toggle tất cả
+      code = 'relay.toggle_relay(0)\n'; 
     } else {
-      code = 'relay.toggle_relay(' + relay + ')\n';  // Toggle một kênh cụ thể
+      code = 'relay.toggle_relay(' + relay + ')\n';  
     }
   } else {
-    var state_value = (state === "1") ? '1' : '0';  // Chuyển đổi trạng thái bật/tắt
+    var state_value = (state === "1") ? '1' : '0';  
     if (relay === "tất cả") {
-      code = 'relay.set_relay(0, ' + state_value + ')\n';  // Bật/tắt tất cả các kênh
+      code = 'relay.set_relay(0, ' + state_value + ')\n';  
     } else {
-      code = 'relay.set_relay(' + relay + ', ' + state_value + ')\n';  // Bật/tắt một kênh cụ thể
+      code = 'relay.set_relay(' + relay + ', ' + state_value + ')\n';  
     }
   }
 
@@ -76,7 +76,7 @@ Blockly.Blocks['relay_get_state'] = {
           ]
         }
       ],
-      "output": "Number",  // Định nghĩa kiểu dữ liệu đầu ra là Number
+      "output": "Number", 
       "colour": "#18820c",
       "tooltip": "Lấy trạng thái bật/tắt của Relay",
       "helpUrl": ""
@@ -87,7 +87,7 @@ Blockly.Blocks['relay_get_state'] = {
 Blockly.Python['relay_get_state'] = function(block) {
   Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';
   var relay = block.getFieldValue('relay');  
-  var code = 'relay.get_relay(' + relay + ')';  // Đọc trạng thái của một kênh relay cụ thể
+  var code = 'relay.get_relay(' + relay + ')'; 
   
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
@@ -181,13 +181,13 @@ Blockly.Python['control_relay_at_address'] = function (block) {
   Blockly.Python.definitions_['relay_init_' + address] = `relay_${address} = RelayController(${address})`;
 
   var code = "";
-  var relay_code = (relay == "tất cả") ? '0' : relay;  // Chọn relay cụ thể hoặc tất cả
+  var relay_code = (relay == "tất cả") ? '0' : relay;  
 
   if (state === "toggle") {
-    code += `relay_${address}.toggle_relay(${relay_code})\n`;  // Toggle
+    code += `relay_${address}.toggle_relay(${relay_code})\n`;  
   } else {
-    var state_value = (state === "1") ? '1' : '0';  // Chuyển đổi trạng thái bật/tắt
-    code += `relay_${address}.set_relay(${relay_code}, ${state_value})\n`;  // Bật/Tắt
+    var state_value = (state === "1") ? '1' : '0';  
+    code += `relay_${address}.set_relay(${relay_code}, ${state_value})\n`; 
   }
 
   return code;
@@ -232,9 +232,9 @@ Blockly.Python['read_relay_status_at_address'] = function (block) {
 
   Blockly.Python.definitions_['relay_init_' + address] = `relay_${address} = RelayController(${address})`;
 
-  var relay_code = (relay == "tất cả") ? '0' : relay;  // Chọn relay cụ thể hoặc tất cả
+  var relay_code = (relay == "tất cả") ? '0' : relay;  
   
-  var code = `relay_${address}.get_relay(${relay_code})\n`;  // Đọc trạng thái relay
+  var code = `relay_${address}.get_relay(${relay_code})\n`;  
   
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
