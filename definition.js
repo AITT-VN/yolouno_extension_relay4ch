@@ -1,8 +1,8 @@
 Blockly.Blocks['relay_toggle_control'] = {
   init: function () {
     this.jsonInit({
-      "type": "relay 4 kênh relay_toggle_control",
-      "message0": "%1 relay %2",
+      "type": "relay_toggle_control",
+      "message0": "relay 4 kênh %1%2",
       "args0": [
         {
           "type": "field_dropdown",
@@ -17,11 +17,11 @@ Blockly.Blocks['relay_toggle_control'] = {
           "type": "field_dropdown",
           "name": "relay",
           "options": [
-            ["tất cả", "tất cả"],
-            ["1", "1"],
-            ["2", "2"],
-            ["3", "3"],
-            ["4", "4"]
+            ["tất cả", "0"],
+            ["relay 1", "1"],
+            ["relay 2", "2"],
+            ["relay 3", "3"],
+            ["relay 4", "4"]
           ]
         }
       ],
@@ -41,20 +41,12 @@ Blockly.Python['relay_toggle_control'] = function (block) {
   var code = "";
 
   if (state === "toggle") {
-    if (relay === "tất cả") {
-      code = 'relay.toggle_relay(0)\n'; 
-    } else {
-      code = 'relay.toggle_relay(' + relay + ')\n';  
-    }
-  } else {
-    var state_value = (state === "1") ? '1' : '0';  
-    if (relay === "tất cả") {
-      code = 'relay.set_relay(0, ' + state_value + ')\n';  
-    } else {
-      code = 'relay.set_relay(' + relay + ', ' + state_value + ')\n';  
-    }
-  }
+      code = 'relay.toggle_relay(' + relay + ')\n';  // Toggle một kênh cụ thể
 
+  } else {
+    var state_value = (state === "1") ? '1' : '0';  // Chuyển đổi trạng thái bật/tắt
+      code = 'relay.set_relay(' + relay + ', ' + state_value + ')\n';  // Bật/tắt một kênh cụ thể
+  }
   return code;
 };
 
@@ -63,20 +55,21 @@ Blockly.Blocks['relay_get_state'] = {
   init: function() {
     this.jsonInit({
       "type": "relay_get_state",
-      "message0": "relay 4 kênh đọc trạng thái relay %1",
+      "message0": "relay 4 kênh đọc trạng thái %1",
       "args0": [
         {
           "type": "field_dropdown",
           "name": "relay",
           "options": [
-            ["1", "1"],
-            ["2", "2"],
-            ["3", "3"],
-            ["4", "4"]
+            ["tất cả", "0"],
+            ["relay 1", "1"],
+            ["relay 2", "2"],
+            ["relay 3", "3"],
+            ["relay 4", "4"]
           ]
         }
       ],
-      "output": "Number", 
+      "output": "Number",  // Định nghĩa kiểu dữ liệu đầu ra là Number
       "colour": "#18820c",
       "tooltip": "Lấy trạng thái bật/tắt của Relay",
       "helpUrl": ""
@@ -87,7 +80,7 @@ Blockly.Blocks['relay_get_state'] = {
 Blockly.Python['relay_get_state'] = function(block) {
   Blockly.Python.definitions_['import_relay_driver'] = 'from relay_4chs import *';
   var relay = block.getFieldValue('relay');  
-  var code = 'relay.get_relay(' + relay + ')'; 
+  var code = 'relay.get_relay(' + relay + ')';  // Đọc trạng thái của một kênh relay cụ thể
   
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
@@ -136,7 +129,7 @@ Blockly.Blocks['control_relay_at_address'] = {
   init: function () {
     this.jsonInit({
       "type": "control_relay_at_address",
-      "message0": "relay 4 kênh %1 relay %2 địa chỉ %3",
+      "message0": "relay 4 kênh %1%2 địa chỉ %3",
       "args0": [
         {
           "type": "field_dropdown",
@@ -151,11 +144,11 @@ Blockly.Blocks['control_relay_at_address'] = {
           "type": "field_dropdown",
           "name": "relay",
           "options": [
-            ["tất cả", "tất cả"],
-            ["1", "1"],
-            ["2", "2"],
-            ["3", "3"],
-            ["4", "4"]
+            ["tất cả", "0"],
+            ["relay 1", "1"],
+            ["relay 2", "2"],
+            ["relay 3", "3"],
+            ["relay 4", "4"]
           ]
         },
         {
@@ -181,13 +174,11 @@ Blockly.Python['control_relay_at_address'] = function (block) {
   Blockly.Python.definitions_['relay_init_' + address] = `relay_${address} = RelayController(${address})`;
 
   var code = "";
-  var relay_code = (relay == "tất cả") ? '0' : relay;  
-
   if (state === "toggle") {
-    code += `relay_${address}.toggle_relay(${relay_code})\n`;  
+    code += `relay_${address}.toggle_relay(${relay})\n`;  // Toggle
   } else {
-    var state_value = (state === "1") ? '1' : '0';  
-    code += `relay_${address}.set_relay(${relay_code}, ${state_value})\n`; 
+    var state_value = (state === "1") ? '1' : '0';  // Chuyển đổi trạng thái bật/tắt
+    code += `relay_${address}.set_relay(${relay}, ${state_value})\n`;  // Bật/Tắt
   }
 
   return code;
@@ -197,17 +188,17 @@ Blockly.Blocks['read_relay_status_at_address'] = {
   init: function () {
     this.jsonInit({
       "type": "read_relay_status_at_address",
-      "message0": "relay 4 kênh đọc trạng thái relay %1 địa chỉ %2",
+      "message0": "relay 4 kênh đọc trạng thái %1 địa chỉ %2",
       "args0": [
         {
           "type": "field_dropdown",
           "name": "relay",
           "options": [
-            ["tất cả", "tất cả"],
-            ["1", "1"],
-            ["2", "2"],
-            ["3", "3"],
-            ["4", "4"]
+            ["tất cả", "0"],
+            ["relay 1", "1"],
+            ["relay 2", "2"],
+            ["relay 3", "3"],
+            ["relay 4", "4"]
           ]
         },
         {
@@ -230,11 +221,8 @@ Blockly.Python['read_relay_status_at_address'] = function (block) {
   var relay = block.getFieldValue('relay');
   var address = Blockly.Python.valueToCode(block, 'address', Blockly.Python.ORDER_ATOMIC);
 
-  Blockly.Python.definitions_['relay_init_' + address] = `relay_${address} = RelayController(${address})`;
-
-  var relay_code = (relay == "tất cả") ? '0' : relay;  
-  
-  var code = `relay_${address}.get_relay(${relay_code})\n`;  
+  Blockly.Python.definitions_['relay_init_' + address] = `relay_${address} = RelayController(${address})`;  
+  var code = `relay_${address}.get_relay(${relay})\n`;  // Đọc trạng thái relay
   
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
